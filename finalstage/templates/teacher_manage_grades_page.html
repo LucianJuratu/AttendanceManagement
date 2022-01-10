@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+  <title>Manage Grades</title>
+{% endblock %}
+  
+{% block body %}
+<body class="shopping-cart sidebar-collapse">
+  <nav class="navbar fixed-top" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <div class="navbar-brand">
+          Attendance Management System
+        </div>
+      </div>
+      <form action="/logout" method="GET">
+        <button type="submit" class="btn">Log Out</button>
+      </form>
+    </div>
+  </nav>
+  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('../static/img/desk_chair.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <h2 class="title">{{username}}'s Grades</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="card card-plain">
+        <div class="card-body">
+       
+          <br />
+		<form action="/teacher_manage_grades" method="POST">
+ <input type="date" class="form-control" placeholder="Date" name="date" required>
+          <div class="table-responsive">
+            <table class="table table-shopping table-striped">
+
+              <thead>
+                <tr>
+                  <th>Grades</th>
+                  <th>Dates</th>
+                </tr>
+
+              </thead>
+ 
+                {% for grade in grades: %}
+                  <tr>
+
+                    <td class="td-number text-center">
+                      {{ grade }}
+                    </td>
+                       <td class="td-number text-center">
+                      {{ dates[loop.index0] }}
+                    </td>
+                  </tr>
+                {% endfor %}
+
+              </tbody>
+
+            </table>
+  <input name="grade" type="number" class="form-control" required>
+ <button type="submit" class="btn"> 
+            Add Grade
+</button>
+</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
